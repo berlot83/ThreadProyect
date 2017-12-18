@@ -21,13 +21,8 @@ public class PruebaGeneral extends Thread {
 
 class Prueba1 {
 
-	private volatile boolean flag = true;
 	private static Thread th1;
 	private static Thread th2;
-	
-	private void stopRunning() {
-		flag = false;
-	}
 
 	public static void main(String[] args) throws InterruptedException {
 		th1 = new Thread();
@@ -99,6 +94,28 @@ class RunnableWithoutImplements{
 			
 		};
 		
+		r.run();
+	}
+}
+
+
+
+class RunMethod1 {
+	static int num;
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		Runnable r = () -> {
+			while (num < 6) {
+				try {
+					Thread.sleep(2000, 150);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("Play hard");
+				num++;
+			}
+		};
 		r.run();
 	}
 }
